@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Blank Page &mdash; Stisla</title>
+  <?= $this->renderSection('title') ?>
  
   <!-- General CSS Files -->
   <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
@@ -252,7 +252,7 @@
             </ul>
  
             <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
-              <a href="" class="btn btn-primary btn-lg btn-block btn-icon-split">
+              <a href="" class="btn btn-primary btn-sm btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Upgrade to Pro
               </a>
             </div>
