@@ -1,38 +1,33 @@
 <?= $this->extend('layout/default') ?>
 
 <?= $this->section('title') ?>
-<title>Update Gawe &mdash; YukNikah</title>
+<title>Update Group &mdash; YukNikah</title>
 <?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <section class="section">
           <div class="section-header">
               <div class="section-header-back">
-                  <a href="<?= site_url('gawe') ?>" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
+                  <a href="<?= site_url('groups') ?>" class="btn btn-primary"><i class="fas fa-arrow-left"></i></a>
                 </div>
-            <h1>Update Gawe</h1>
+            <h1>Update Group</h1>
           </div>
  
           <div class="section-body">
             <div class="card">
               <div class="card-header">
-                <h4>Update Gawe / Acara</h4>
+                <h4>Update Group</h4>
               </div>
                 <div class="card-body">
-                    <form action="<?= site_url('gawe/'. $gawe->id_gawe) ?>" method="post" autocomplete="off">
+                    <form action="<?= site_url('groups/update/'. $groups->id_group) ?>" method="post" autocomplete="off">
                         <?= csrf_field() ?>
-                        <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
-                            <label for="name_gawe">Nama Gawe / Acara *</label>
-                            <input type="text" name="name_gawe" value="<?= $gawe->name_gawe ?>" class="form-control" required>
+                            <label for="name_group">Nama group*</label>
+                            <input type="text" name="name_group" value="<?= $groups->name_group ?>" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="date_gawe">Tanggal Acara *</label>
-                            <input type="date" name="date_gawe" value="<?= $gawe->date_gawe ?>" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="info_gawe">Info</label>
-                            <textarea name="info_gawe" class="form-control"><?= $gawe->info_gawe ?></textarea>
+                            <label for="info_group">Info</label>
+                            <textarea name="info_group" class="form-control"><?= $groups->info_group ?></textarea>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-success"><i class="fas fa-paper-plane"></i> Save</button>

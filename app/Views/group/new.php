@@ -19,15 +19,11 @@
                 <h4>Create Group</h4>
               </div>
                 <div class="card-body">
-                    <form action="<?= site_url('groups') ?>" method="post" autocomplete="off">
+                    <form action="<?= site_url('groups/create') ?>" method="post" autocomplete="off">
                         <?= csrf_field() ?>
                         <div class="form-group">
                             <label for="name_group">Nama Group*</label>
                             <input type="text" name="name_group" class="form-control" required autofocus>
-                        </div>
-                        <div class="form-group">
-                            <label for="date_group">Tanggal Acara *</label>
-                            <input type="date" name="date_group" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="info_group">Info</label>

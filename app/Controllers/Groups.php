@@ -2,10 +2,16 @@
 
 namespace App\Controllers;
 
+// use App\Models\GroupsModel;
 use CodeIgniter\RESTful\ResourcePresenter;
 
 class Groups extends ResourcePresenter
 {
+    // public function __construct()
+    // {
+    //     $this->group = new GroupsModel();
+    // }
+    protected $modelName = 'App\Models\GroupsModel';
     /**
      * Present a view of resource objects
      *
@@ -13,7 +19,8 @@ class Groups extends ResourcePresenter
      */
     public function index()
     {
-        return view('group/index');
+        $data['groups'] = $this->model->findAll();
+        return view('group/index', $data);
     }
 
     /**
@@ -46,7 +53,9 @@ class Groups extends ResourcePresenter
      */
     public function create()
     {
-        //
+        $data = $this->request->getPost();
+        $this->model->insert($data);
+        return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Disimpan');
     }
 
     /**
@@ -58,7 +67,13 @@ class Groups extends ResourcePresenter
      */
     public function edit($id = null)
     {
-        return view('group/edit');
+        $group = $this->model->where('id_group', $id)->first();
+        if (is_object($group)) {
+            $data['groups'] = $group;
+            return view('group/edit', $data);
+        } else {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
     }
 
     /**
@@ -71,7 +86,9 @@ class Groups extends ResourcePresenter
      */
     public function update($id = null)
     {
-        //
+        $data = $this->request->getPost();
+        $this->model->update($id, $data);
+        return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -95,6 +112,7 @@ class Groups extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        //
+        $this->model->delete($id);
+        return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Dihapus');
     }
 }
