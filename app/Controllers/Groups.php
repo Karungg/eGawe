@@ -12,6 +12,7 @@ class Groups extends ResourcePresenter
     //     $this->group = new GroupsModel();
     // }
     protected $modelName = 'App\Models\GroupsModel';
+    
     /**
      * Present a view of resource objects
      *
@@ -114,5 +115,41 @@ class Groups extends ResourcePresenter
     {
         $this->model->delete($id);
         return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function trash()
+    {
+        $data['groups'] = $this->model->onlyDeleted()->findAll();
+        return view('group/trash', $data);
+    }
+
+    public function restore($id = null)
+    {
+        $this->db = \Config\Database::connect();
+        if ($id != null) {
+            $this->db->table('groups')
+            ->set('deleted_at', null, true)
+            ->where(['id_group' => $id])
+            ->update();
+        } else {
+            $this->db->table('groups')
+            ->set('deleted_at', null, true)
+            ->where('deleted_at is NOT NULL', NULL, FALSE)
+            ->update();
+        }
+        if ($this->db->affectedRows() > 0) {
+            return redirect()->to(site_url('groups'))->with('success', 'Data Berhasil Direstore');
+        }
+    }
+
+    public function delete2($id = null)
+    {
+        if ($id != null) {
+            $this->model->delete($id, true);
+            return redirect()->to(site_url('groups/trash'))->with('success', 'Data Trash Berhasil Dihapus Permanen');
+        } else {
+            $this->model->purgeDeleted();
+            return redirect()->to(site_url('groups/trash'))->with('success', 'Semua Data Trash Berhasil Dihapus Permanen');
+        }
     }
 }

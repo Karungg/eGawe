@@ -9,7 +9,7 @@
           <div class="section-header">
             <h1>Group</h1>
             <div class="section-header-button">
-              <a href="<?= site_url('groups/new') ?>" class="btn btn-primary">Add New</a>
+              <a href="<?= site_url('groups') ?>" class="btn btn-primary">Back</a>
             </div>
           </div>
 
@@ -36,9 +36,15 @@
           <div class="section-body">
             <div class="card">
               <div class="card-header">
-                <h4>Data Group</h4>
+                <h4>Data Group - Trash</h4>
                 <div class="card-header-action">
-                  <a href="<?= site_url('groups/trash') ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Trash</a>
+                  <a href="<?= site_url('groups/restore') ?>" class="btn btn-info">Restore All</a>
+                  <form action="<?= site_url('groups/delete2/') ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus?')">
+                        <?= csrf_field() ?>
+                        <button class="btn btn-danger btn-sm">
+                          Delete All Permanently
+                        </button>
+                      </form>
                 </div>
               </div>
                 <div class="card-body table-responsive">
@@ -54,12 +60,12 @@
                       <td><?= $key + 1 ?></td>
                       <td><?= $value->name_group ?></td>
                       <td><?= $value->info_group ?></td>
-                      <td class="text-center" style="width: 15%;">
-                      <a href="<?= site_url('groups/edit/'. $value->id_group) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                      <form action="<?= site_url('groups/delete/' . $value->id_group) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus?')">
+                      <td class="text-center" style="width: 20%;">
+                      <a href="<?= site_url('groups/restore/'. $value->id_group) ?>" class="btn btn-info btn-sm">Restore</a>
+                      <form action="<?= site_url('groups/delete2/' . $value->id_group) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus?')">
                         <?= csrf_field() ?>
                         <button class="btn btn-danger btn-sm">
-                          <i class="fas fa-trash"></i>
+                          Delete Permanently
                         </button>
                       </form>
                     </td>

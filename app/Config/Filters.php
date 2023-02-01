@@ -67,7 +67,8 @@ class Filters extends BaseConfig
             [
                 'home',
                 'gawe',
-                'gawe/*'
+                'gawe/*',
+                'groups/*'
             ]
         ]
     ];
