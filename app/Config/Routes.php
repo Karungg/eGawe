@@ -29,13 +29,14 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+$routes->get('login', 'Auth::login');
 $routes->addRedirect('/', 'home');
 $routes->get('gawe/add', 'Gawe::create');
 $routes->post('gawe', 'Gawe::store');
 $routes->get('gawe/edit/(:num)', 'Gawe::edit/$1');
 $routes->put('gawe/(:any)', 'Gawe::update/$1');
 $routes->delete('gawe/(:segment)', 'Gawe::destroy/$1');
-$routes->get('login', 'Auth::login');
+$routes->presenter('groups');
 
 
 /*
