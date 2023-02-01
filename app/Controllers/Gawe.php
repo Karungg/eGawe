@@ -54,4 +54,15 @@ class Gawe extends BaseController
             return redirect()->to(site_url('gawe'))->with('success', "Data Berhasil Diupdate");
         }
     }
+
+    public function destroy($id)
+    {
+        $data = $this->request->getPost();
+
+        $this->db->table('gawe')->where(['id_gawe' => $id])->delete();
+
+        if ($this->db->affectedRows() > 0) {
+            return redirect()->to(site_url('gawe'))->with('success', "Data Berhasil Dihapus");
+        }
+    }
 }

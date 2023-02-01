@@ -41,10 +41,10 @@
                 <div class="card-body table-responsive">
                   <table class="table table-striped table-md">
                     <tbody><tr>
-                      <th>#</th>
+                      <th>No</th>
                       <th>Name</th>
-                      <th>Created At</th>
-                      <th>Status</th>
+                      <th>Date</th>
+                      <th>Info</th>
                       <th>Action</th>
                     </tr>
                     <?php foreach ($gawe as $key => $value) : ?>
@@ -55,7 +55,13 @@
                       <td><?= $value->info_gawe ?></td>
                       <td class="text-center" style="width: 15%;">
                       <a href="<?= site_url('gawe/edit/'. $value->id_gawe) ?>" class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i></a>
-                      <a href="#" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                      <form action="<?= site_url('gawe/' . $value->id_gawe) ?>" method="post" class="d-inline" onsubmit="return confirm('Hapus?')">
+                        <?= csrf_field() ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-danger btn-sm">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </form>
                     </td>
                     </tr>
                     <?php endforeach ?>
