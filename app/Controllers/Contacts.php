@@ -3,9 +3,16 @@
 namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
+use App\Models\ContactsModel;
+use App\Models\GroupsModel;
 
 class Contacts extends ResourceController
 {
+    public function __construct()
+    {
+        $this->group = new GroupsModel();
+        $this->contact = new ContactsModel();
+    }
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -13,7 +20,8 @@ class Contacts extends ResourceController
      */
     public function index()
     {
-        return view('contact/index');
+        $data['contacts'] = $this->contact->getAll();
+        return view('contact/index', $data);
     }
 
     /**
